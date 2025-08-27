@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF"
+      crossorigin="anonymous"
+    />
+
+    <title>QuickNews | Catch the Headlines, Instantly</title>
+    <style>
+      body {
+        background-image: url(https://images.pond5.com/bright-blue-and-white-news-footage-246869165_iconl.jpeg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+      }
+
+      .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 40px 15px;
+        background-color: rgba(255, 255, 255, 0.85);
+        border-radius: 10px;
+        margin-top: 30px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .form-control[name="subject"] {
+        min-width: 100%;
+      }
+
+      h1, h4 {
+        background-color: rgba(255, 255, 255, 0.75);
+        padding: 10px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">QuickNews</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index">Home</a>
+            </li>
+          </ul>
+          <form method="GET" action="{% url 'search' %}" class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              name="search"
+              placeholder="News"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+          <a href="viewnotes" class="btn btn-primary mx-2">View Highlights</a>
+        </div>
+      </div>
+    </nav>
+
+    <br><br><br>
+    <center><h4>{{ msg }}</h4></center>
+    <br>
+    <h1 class="text-center text-dark">QuickNews | Highlights Only</h1>
+
+    <form
+      autocomplete="off"
+      name="notes"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <div class="form-container shadow">
+        <div class="mb-3 w-100">
+          <label class="form-label text-danger"><b>Full Name</b></label>
+          <input
+            class="form-control"
+            required
+            type="text"
+            name="fullname"
+            placeholder="Enter your Name"
+            autofocus
+          />
+        </div>
+        <div class="mb-3 w-100">
+          <label class="form-label text-danger"><b>Points</b></label>
+          <input
+            class="form-control"
+            required
+            type="text"
+            name="subject"
+            placeholder="Enter Highlight"
+          />
+        </div>
+        <div class="text-center">
+          <input class="btn btn-success" type="submit" name="submit" value="Submit" />
+          <input class="btn btn-warning" type="reset" name="cancel" value="Cancel" />
+        </div>
+      </div>
+    </form>
+
+    {% include "last.html" %}
+  </body>
+</html>

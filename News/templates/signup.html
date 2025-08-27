@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <title>QuickNews | User Signup</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url("https://images.pond5.com/bright-blue-and-white-news-footage-246869165_iconl.jpeg") no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    .form-container {
+      max-width: 900px;
+      margin: 120px auto;
+      padding: 40px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-control {
+      background-color: transparent !important;
+      border: 1px solid white !important;
+      color: white !important;
+    }
+
+    .form-control::placeholder {
+      color: #ddd;
+    }
+
+    h1, h3, h4 {
+      text-align: center;
+      color: white;
+    }
+
+    .btn-success {
+      width: 120px;
+    }
+
+    .btn-warning {
+      width: 120px;
+    }
+
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.7) !important;
+    }
+
+    .navbar-brand {
+      color: white !important;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">QuickNews</a>
+    </div>
+  </nav>
+
+  <div class="form-container">
+    <h1>QuickNews</h1>
+    <h3>User Signup</h3>
+    <center><h4>{{msg}}</h4></center>
+
+    <form autocomplete="off" name="employeeregister" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+          <label><b>Full Name</b></label>
+          <input class="form-control" required type="text" name="fullname" pattern="[a-zA-Z\s\.]{2,100}" placeholder="Enter Full Name">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+          <label><b>Mobile Number</b></label>
+          <input class="form-control" required type="number" name="mobilenumber" pattern="[0-9]{10,13}" placeholder="Enter Mobile Number">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+          <label><b>Email ID</b></label>
+          <input class="form-control" required type="email" name="emailid" placeholder="Enter Email ID">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+          <label><b>Password</b></label>
+          <input class="form-control" required type="password" name="password" placeholder="Enter Password">
+        </div>
+      </div>
+      <center class="mb-3">
+        <input class="btn btn-success me-2" type="submit" name="submit" value="Register">
+        <input class="btn btn-warning" type="reset" name="cancel" value="Cancel">
+      </center>
+      <center><h4>If already signed up then <a href="http://127.0.0.1:8000/" style="color: #ccc;">Login</a></h4></center>
+    </form>
+  </div>
+
+  {% include "last.html" %}
+</body>
+</html>

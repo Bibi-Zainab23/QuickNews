@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF"
+      crossorigin="anonymous"
+    />
+
+    <title>QuickNews | Catch the Headlines,Instantly</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">QuickNews</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="{% url 'asignup' %}">Home</a>
+            </li>
+                    
+          </form>
+
+          
+        </div>
+      </div>
+    </nav>
+    <h1 class="text-center text-dark">QuickNews/Notes | Your Confirmation ia here-let's get Started</h1>
+    <style>
+        body {
+          background-image: url(https://images.pond5.com/bright-blue-and-white-news-footage-246869165_iconl.jpeg);
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: 100% 100%;
+        }
+      </style>
+    <br>
+    <center><h3>User List</h3></center>
+    <table align="center" border="1" class="table table-bordered">
+        <tr>
+           
+            <th>Full Name</th>
+            <th>Mobile Number</th>
+            <th>Email ID</th> 
+            <th>Delete</th>
+        </tr>
+        
+        {% for d in data %}
+        <tr>
+            
+            <td>{{d.fullname}}</td>
+            
+    
+            <td>{{d.mobilenumber}}</td>
+            <td>{{d.emailid}}</td>
+
+            <td>
+            <form name="frm" method="post">
+            <input type="hidden" name="mobilenumber" value="{{d.mobilenumber}}">
+            <input class="btn btn-danger" type="submit" name="delete" value="X">	
+            {%csrf_token%}
+            </form>
+        </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+
+
+		
+		
+   
+
+    {% csrf_token %}
+{% include "last.html" %}
+  </body>
+</html>
